@@ -39,7 +39,7 @@ backup() {
         tmux -q send -t 0 "save-on" C-m
         cd /home/jfs/vanilla/backup
         /bin/ls -t | grep "bihourly" | awk 'NR>22' | xargs rm
-#       lftp -c "open -u ********,******** dedibackup-dc2.online.net; mirror -Re . /jfs"
+        #lftp -c "open -u ********,******** dedibackup-dc2.online.net; mirror -Re . /jfs"
     elif [ $1 == "daily" ]; then
         d=$(date +%d)
         u=$(date +%u)
@@ -61,7 +61,7 @@ backup() {
             tmux -q send -t 0 "save-on" C-m
             cd /home/jfs/vanilla/backup
             /bin/ls -t | grep "weekly" | awk 'NR>10' | xargs rm
-#           lftp -c "open -u ********,******** dedibackup-dc2.online.net; mirror -Re . /jfs"
+            #lftp -c "open -u ********,******** dedibackup-dc2.online.net; mirror -Re . /jfs"
         else
             tmux -q send -t 0 "save-all" C-m
             sleep 1
@@ -72,7 +72,7 @@ backup() {
             tmux -q send -t 0 "save-on" C-m
             cd /home/jfs/vanilla/backup
             /bin/ls -t | grep "daily" | awk 'NR>10' | xargs rm
-#           lftp -c "open -u ********,******** dedibackup-dc2.online.net; mirror -Re . /jfs"
+            #lftp -c "open -u ********,******** dedibackup-dc2.online.net; mirror -Re . /jfs"
         fi
     else
         echo "Incorrect usage"
