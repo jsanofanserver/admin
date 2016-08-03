@@ -20,7 +20,7 @@ isrunning() {
 
 # saves the vanilla server to disk
 save() {
-    tmux -q send -t 0 "save-all" C-m
+    tmux -q send -t vanilla "save-all" C-m
 }
 
 # creates a backup of the vanilla world folder
