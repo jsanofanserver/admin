@@ -19,6 +19,11 @@ isrunning() {
 }
 
 # saves the vanilla server to disk
+#
+# cron entries:
+# */15     1-23/2 *    *   *   /home/jfs/jfs.sh save
+# 15-45/15 0-22/2 *    *   *   /home/jfs/jfs.sh save
+#
 save() {
     tmux -q send -t vanilla "save-all" C-m
 }
@@ -28,6 +33,11 @@ save() {
 # keeps daily backups for 10 days
 # keeps weekly backups for 10 weeks
 # keeps monthly backups forever
+#
+# cron entries:
+# 0        2-23/2 *    *   *   /home/jfs/jfs.sh backup bihourly > /dev/null 2>&1
+# 0        0      *    *   *   /home/jfs/jfs.sh backup daily > /dev/null 2>&1
+#
 backup() {
     if [ $1 == "bihourly" ]; then
         tmux -q send -t vanilla "save-all" C-m
@@ -81,6 +91,10 @@ backup() {
 
 # updates a file showing how long ago the overviewer was updated
 # file contents are displayed under the map on the website
+#
+# cron entry:
+# 0        *      *    *   *   /home/jfs/jfs.sh overviewertime
+#
 overviewertime() {
     h=$(date +%H)
     if [ $h -eq "0" ]; then
