@@ -118,6 +118,11 @@ tps() {
     tmux -q send -t vanilla "$output" C-m
 }
 
+# updates markers on the overviewer
+markers() {
+    overviewer.py --config=/var/www/html/overviewer/config.py --genpoi --skip-scan
+}
+
 # runs a function depending on your command argument(s)
 case $1 in
     save)
@@ -131,4 +136,7 @@ case $1 in
         ;;
     tps)
         tps
+        ;;
+    markers)
+        markers
 esac
