@@ -14,7 +14,7 @@ intmux
 
 # detects if the vanilla server is running
 isrunning() {
-    ps ax | grep -v grep | grep -v tmux | grep "minecraft_server.jar" > /dev/null
+    ps ax | grep -v grep | grep -v tmux | grep "vanilla.jar" > /dev/null
     return $?
 }
 
@@ -61,6 +61,8 @@ backup() {
             cd /home/jfs/vanilla/
             tar czf /home/jfs/vanilla/backup/$FILENAME world
             tmux -q send -t vanilla "save-on" C-m
+            #cd /home/jfs/vanilla/backup
+            #lftp -c "open -u ********,******** dedibackup-dc2.online.net; mirror -Re . /jfs"
         elif [ $u -eq "1" ]; then
             tmux -q send -t vanilla "save-all" C-m
             sleep 1
